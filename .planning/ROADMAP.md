@@ -7,7 +7,7 @@ Build an RSpec formatter gem that captures test results in TDD Guard's JSON form
 ## Phases
 
 - [x] **Phase 1: Core Formatter** - RSpec formatter captures all test result types and writes correct JSON output (completed 2026-02-11)
-- [ ] **Phase 2: Configuration & Validation** - Project root is configurable and integration tests prove correctness
+- [x] **Phase 2: Configuration & Validation** - Project root is configurable and integration tests prove correctness (completed 2026-02-11)
 - [ ] **Phase 3: Gem Packaging** - Publishable gem with proper metadata and documentation
 
 ## Phase Details
@@ -46,7 +46,7 @@ Plans:
 
 Plans:
 
-- [ ] 02-01-PLAN.md — Project root configuration (env var + RSpec config option + tests)
+- [x] 02-01-PLAN.md — Project root configuration (env var + RSpec config option + tests)
 
 ### Phase 3: Gem Packaging
 
@@ -69,5 +69,5 @@ Plans:
 | Phase                         | Plans Complete | Status      | Completed  |
 | ----------------------------- | -------------- | ----------- | ---------- |
 | 1. Core Formatter             | 2/2            | ✓ Complete  | 2026-02-11 |
-| 2. Configuration & Validation | 0/1            | In progress | -          |
+| 2. Configuration & Validation | 1/1            | ✓ Complete  | 2026-02-11 |
 | 3. Gem Packaging              | 0/1            | Not started | -          |
