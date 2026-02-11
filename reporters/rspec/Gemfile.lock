@@ -1,3 +1,9 @@
+PATH
+  remote: .
+  specs:
+    tdd-guard-rspec (0.1.0)
+      rspec (~> 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -21,7 +27,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  rspec (~> 3.0)
+  tdd-guard-rspec!
 
 CHECKSUMS
   diff-lcs (1.6.2)
@@ -30,6 +36,7 @@ CHECKSUMS
   rspec-expectations (3.13.5)
   rspec-mocks (3.13.7)
   rspec-support (3.13.7)
+  tdd-guard-rspec (0.1.0)
 
 BUNDLED WITH
   4.0.6
