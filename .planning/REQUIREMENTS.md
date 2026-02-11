@@ -21,8 +21,8 @@
 
 ### Configuration
 
-- [ ] **CFG-01**: Project root configurable via environment variable (`TDD_GUARD_PROJECT_ROOT`)
-- [ ] **CFG-02**: Project root configurable via RSpec configuration option
+- [x] **CFG-01**: Project root configurable via environment variable (`TDD_GUARD_PROJECT_ROOT`)
+- [x] **CFG-02**: Project root configurable via RSpec configuration option
 
 ### Packaging
 
@@ -32,9 +32,9 @@
 
 ### Testing
 
-- [ ] **TST-01**: Integration tests using existing reporter test framework (reporters/test/)
-- [ ] **TST-02**: Test artifacts for passing, failing, and import error scenarios in reporters/test/artifacts/rspec/
-- [ ] **TST-03**: Integration tests validate module paths, test names, states, and error messages
+- [x] **TST-01**: Integration tests using existing reporter test framework (reporters/test/)
+- [x] **TST-02**: Test artifacts for passing, failing, and import error scenarios in reporters/test/artifacts/rspec/
+- [x] **TST-03**: Integration tests validate module paths, test names, states, and error messages
 
 ## v2 Requirements
 
@@ -66,11 +66,11 @@
 | STR-01      | Phase 1 | Done    |
 | STR-02      | Phase 1 | Done    |
 | STR-03      | Phase 1 | Done    |
-| CFG-01      | Phase 2 | Pending |
-| CFG-02      | Phase 2 | Pending |
-| TST-01      | Phase 2 | Pending |
-| TST-02      | Phase 2 | Pending |
-| TST-03      | Phase 2 | Pending |
+| CFG-01      | Phase 2 | Done    |
+| CFG-02      | Phase 2 | Done    |
+| TST-01      | Phase 2 | Done    |
+| TST-02      | Phase 2 | Done    |
+| TST-03      | Phase 2 | Done    |
 | PKG-01      | Phase 3 | Pending |
 | PKG-02      | Phase 3 | Pending |
 | PKG-03      | Phase 3 | Pending |
@@ -84,4 +84,4 @@
 ---
 
 _Requirements defined: 2026-02-11_
-_Last updated: 2026-02-11 after Phase 1 completion_
+_Last updated: 2026-02-11 after Phase 2 completion_
