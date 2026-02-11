@@ -22,11 +22,11 @@ Build an RSpec formatter gem that captures test results in TDD Guard's JSON form
   3. Running RSpec on a file with syntax/load errors produces a test.json file with a synthetic error entry (not a crash)
   4. Pending/skipped tests appear in the output with appropriate state
   5. The JSON output passes validation against the existing TDD Guard reporter schema (testModules array with tests grouped by spec file path, overall reason field)
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
+- [ ] 01-01-PLAN.md — RSpec formatter implementation (gem scaffold + formatter class)
+- [ ] 01-02-PLAN.md — Test artifacts and integration test wiring
 
 ### Phase 2: Configuration & Validation
 **Goal**: Reporter is configurable for different project layouts and validated through the existing integration test framework
@@ -60,6 +60,6 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Formatter | 0/TBD | Not started | - |
+| 1. Core Formatter | 0/2 | Not started | - |
 | 2. Configuration & Validation | 0/TBD | Not started | - |
 | 3. Gem Packaging | 0/TBD | Not started | - |
