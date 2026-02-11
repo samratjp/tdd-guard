@@ -70,21 +70,21 @@ The project root must be an absolute path and the current working directory must
 
 ### Rails Projects
 
-The formatter works with Rails projects using `rspec-rails` without any additional setup. In a Rails project, configure the formatter in `rails_helper.rb` or a support file:
+No additional configuration is needed for Rails. The `.rspec` file approach works the same way with `rspec-rails`:
+
+```
+--format TddGuardRspec::Formatter
+--require tdd_guard_rspec
+```
+
+If you prefer programmatic configuration, add it to `rails_helper.rb` or a support file loaded by it:
 
 ```ruby
-# spec/support/tdd_guard.rb
 require "tdd_guard_rspec"
 
 RSpec.configure do |config|
   config.formatter = TddGuardRspec::Formatter
 end
-```
-
-Make sure the support file is loaded by adding to `rails_helper.rb`:
-
-```ruby
-Rails.root.glob("spec/support/**/*.rb").sort.each { |f| require f }
 ```
 
 ## More Information
