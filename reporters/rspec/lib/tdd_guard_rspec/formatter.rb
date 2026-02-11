@@ -140,8 +140,18 @@ module TddGuardRspec
       full_name.to_s.split("::").first || full_name.to_s
     end
 
+    def project_root
+      config_root = RSpec.configuration.tdd_guard_project_root
+      return config_root if config_root.is_a?(String) && !config_root.empty?
+
+      env_root = ENV["TDD_GUARD_PROJECT_ROOT"]
+      return env_root if env_root.is_a?(String) && !env_root.empty?
+
+      Dir.pwd
+    end
+
     def write_results(output_data)
-      data_dir = File.join(Dir.pwd, ".claude", "tdd-guard", "data")
+      data_dir = File.join(project_root, ".claude", "tdd-guard", "data")
       FileUtils.mkdir_p(data_dir)
 
       output_path = File.join(data_dir, "test.json")
