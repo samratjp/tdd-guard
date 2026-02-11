@@ -26,9 +26,9 @@
 
 ### Packaging
 
-- [ ] **PKG-01**: Publishable as `tdd-guard-rspec` gem on RubyGems
-- [ ] **PKG-02**: Gemspec with proper metadata, dependencies (rspec ~> 3.0), and Ruby version requirement (>= 3.0)
-- [ ] **PKG-03**: README with installation and configuration instructions
+- [x] **PKG-01**: Publishable as `tdd-guard-rspec` gem on RubyGems
+- [x] **PKG-02**: Gemspec with proper metadata, dependencies (rspec ~> 3.0), and Ruby version requirement (>= 3.0)
+- [x] **PKG-03**: README with installation and configuration instructions
 
 ### Testing
 
@@ -56,24 +56,24 @@
 
 ## Traceability
 
-| Requirement | Phase   | Status  |
-| ----------- | ------- | ------- |
-| RPT-01      | Phase 1 | Done    |
-| RPT-02      | Phase 1 | Done    |
-| RPT-03      | Phase 1 | Done    |
-| RPT-04      | Phase 1 | Done    |
-| RPT-05      | Phase 1 | Done    |
-| STR-01      | Phase 1 | Done    |
-| STR-02      | Phase 1 | Done    |
-| STR-03      | Phase 1 | Done    |
-| CFG-01      | Phase 2 | Done    |
-| CFG-02      | Phase 2 | Done    |
-| TST-01      | Phase 2 | Done    |
-| TST-02      | Phase 2 | Done    |
-| TST-03      | Phase 2 | Done    |
-| PKG-01      | Phase 3 | Pending |
-| PKG-02      | Phase 3 | Pending |
-| PKG-03      | Phase 3 | Pending |
+| Requirement | Phase   | Status |
+| ----------- | ------- | ------ |
+| RPT-01      | Phase 1 | Done   |
+| RPT-02      | Phase 1 | Done   |
+| RPT-03      | Phase 1 | Done   |
+| RPT-04      | Phase 1 | Done   |
+| RPT-05      | Phase 1 | Done   |
+| STR-01      | Phase 1 | Done   |
+| STR-02      | Phase 1 | Done   |
+| STR-03      | Phase 1 | Done   |
+| CFG-01      | Phase 2 | Done   |
+| CFG-02      | Phase 2 | Done   |
+| TST-01      | Phase 2 | Done   |
+| TST-02      | Phase 2 | Done   |
+| TST-03      | Phase 2 | Done   |
+| PKG-01      | Phase 3 | Done   |
+| PKG-02      | Phase 3 | Done   |
+| PKG-03      | Phase 3 | Done   |
 
 **Coverage:**
 
@@ -84,4 +84,4 @@
 ---
 
 _Requirements defined: 2026-02-11_
-_Last updated: 2026-02-11 after Phase 2 completion_
+_Last updated: 2026-02-11 after Phase 3 completion_
