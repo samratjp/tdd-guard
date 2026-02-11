@@ -58,11 +58,11 @@ Plans:
 1. `gem build tdd-guard-rspec.gemspec` produces a valid .gem file with correct metadata, rspec ~> 3.0 dependency, and Ruby >= 3.0 requirement
 2. README contains installation instructions (Gemfile entry), configuration instructions (RSpec formatter setup), and usage examples
 3. The gem can be installed in a fresh Ruby project and used as an RSpec formatter without errors
-   **Plans**: TBD
+   **Plans:** 1 plan
 
 Plans:
 
-- [ ] 03-01: TBD
+- [ ] 03-01-PLAN.md — Gemspec, version file, README, and gem build verification
 
 ## Progress
 
@@ -70,4 +70,4 @@ Plans:
 | ----------------------------- | -------------- | ----------- | ---------- |
 | 1. Core Formatter             | 2/2            | ✓ Complete  | 2026-02-11 |
 | 2. Configuration & Validation | 0/1            | In progress | -          |
-| 3. Gem Packaging              | 0/TBD          | Not started | -          |
+| 3. Gem Packaging              | 0/1            | Not started | -          |
