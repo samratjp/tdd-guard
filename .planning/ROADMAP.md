@@ -42,12 +42,11 @@ Plans:
 2. Setting project root via RSpec configuration option changes where test.json is written
 3. Integration tests in reporters/test/ pass for the RSpec reporter using the same test harness as other reporters
 4. Test artifacts exist in reporters/test/artifacts/rspec/ covering passing, failing, and import error scenarios
-   **Plans**: TBD
+   **Plans:** 1 plan
 
 Plans:
 
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
+- [ ] 02-01-PLAN.md — Project root configuration (env var + RSpec config option + tests)
 
 ### Phase 3: Gem Packaging
 
@@ -70,5 +69,5 @@ Plans:
 | Phase                         | Plans Complete | Status      | Completed  |
 | ----------------------------- | -------------- | ----------- | ---------- |
 | 1. Core Formatter             | 2/2            | ✓ Complete  | 2026-02-11 |
-| 2. Configuration & Validation | 0/TBD          | Not started | -          |
+| 2. Configuration & Validation | 0/1            | In progress | -          |
 | 3. Gem Packaging              | 0/TBD          | Not started | -          |
