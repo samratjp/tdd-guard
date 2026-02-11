@@ -23,6 +23,7 @@ import {
   createGoReporter,
   createRustReporter,
   createStorybookReporter,
+  createRspecReporter,
 } from './factories'
 
 // Test data structure for each reporter
@@ -41,6 +42,7 @@ type ReporterName =
   | 'go'
   | 'rust'
   | 'storybook'
+  | 'rspec'
 
 describe('Reporters', () => {
   const reporterData: ReporterTestData[] = []
@@ -55,6 +57,7 @@ describe('Reporters', () => {
       createGoReporter(),
       createRustReporter(),
       createStorybookReporter(),
+      createRspecReporter(),
     ]
 
     // Run all reporters in parallel, skipping any that fail (e.g., Rust not installed)
@@ -79,6 +82,7 @@ describe('Reporters', () => {
         { name: 'go', expected: 'singlePassing' },
         { name: 'rust', expected: 'single_passing' },
         { name: 'storybook', expected: 'single-passing.stories' },
+        { name: 'rspec', expected: 'single_passing_spec.rb' },
       ]
 
       it.each(reporters)('$name reports module path', ({ name, expected }) => {
@@ -96,6 +100,7 @@ describe('Reporters', () => {
         { name: 'go', expected: 'singleFailing' },
         { name: 'rust', expected: 'single_failing' },
         { name: 'storybook', expected: 'single-failing.stories' },
+        { name: 'rspec', expected: 'single_failing_spec.rb' },
       ]
 
       it.each(reporters)('$name reports module path', ({ name, expected }) => {
@@ -113,6 +118,7 @@ describe('Reporters', () => {
         { name: 'go', expected: 'missingImport' },
         { name: 'rust', expected: 'compilation' },
         { name: 'storybook', expected: 'single-import-error.stories' },
+        { name: 'rspec', expected: 'single_import_error_spec.rb' },
       ]
 
       it.each(reporters)('$name reports module path', ({ name, expected }) => {
@@ -141,6 +147,7 @@ describe('Reporters', () => {
           expected: 'calculator_tests::should_add_numbers_correctly',
         },
         { name: 'storybook', expected: 'play-test' },
+        { name: 'rspec', expected: 'should add numbers correctly' },
       ]
 
       it.each(reporters)('$name reports test name', ({ name, expected }) => {
@@ -164,6 +171,7 @@ describe('Reporters', () => {
           expected: 'calculator_tests::should_add_numbers_correctly',
         },
         { name: 'storybook', expected: 'play-test' },
+        { name: 'rspec', expected: 'should add numbers correctly' },
       ]
 
       it.each(reporters)('$name reports test name', ({ name, expected }) => {
@@ -187,6 +195,7 @@ describe('Reporters', () => {
         { name: 'go', expected: 'CompilationError' },
         { name: 'rust', expected: 'build' },
         { name: 'storybook', expected: 'play-test' },
+        { name: 'rspec', expected: 'load_error' },
       ]
 
       it.each(reporters)(
@@ -228,6 +237,10 @@ describe('Reporters', () => {
           name: 'rust',
           expected:
             'single_passing::single_passing::calculator_tests::should_add_numbers_correctly',
+        },
+        {
+          name: 'rspec',
+          expected: 'Calculator should add numbers correctly',
         },
       ]
 
@@ -273,6 +286,10 @@ describe('Reporters', () => {
           name: 'storybook',
           expected: 'Calculator Primary play-test',
         },
+        {
+          name: 'rspec',
+          expected: 'Calculator should add numbers correctly',
+        },
       ]
 
       it.each(reporters)(
@@ -302,6 +319,7 @@ describe('Reporters', () => {
         { name: 'go', expected: 'missingImportModule/CompilationError' },
         { name: 'rust', expected: 'compilation::build' },
         { name: 'storybook', expected: 'Calculator Primary play-test' },
+        { name: 'rspec', expected: 'single_import_error_spec.rb' },
       ]
 
       it.each(reporters)(
@@ -326,6 +344,7 @@ describe('Reporters', () => {
         'pytest',
         'go',
         'rust',
+        'rspec',
       ]
 
       it.each(reporters)('%s reports passing state', (reporter) => {
@@ -346,6 +365,7 @@ describe('Reporters', () => {
         'go',
         'rust',
         'storybook',
+        'rspec',
       ]
 
       it.each(reporters)('%s reports failing state', (reporter) => {
@@ -369,6 +389,7 @@ describe('Reporters', () => {
         { name: 'go', expected: 'failed' },
         { name: 'rust', expected: 'failed' },
         { name: 'storybook', expected: 'failed' },
+        { name: 'rspec', expected: 'failed' },
       ]
 
       it.each(reporters)(
@@ -413,6 +434,10 @@ describe('Reporters', () => {
           name: 'storybook',
           expected: ['expected', '5', 'to be', '6'],
         },
+        {
+          name: 'rspec',
+          expected: ['expected: 6', 'got: 5'],
+        },
       ]
 
       it.each(reporters)(
@@ -446,6 +471,7 @@ describe('Reporters', () => {
         { name: 'go', expected: undefined },
         { name: 'rust', expected: '6' }, // Successfully extracts expected value
         { name: 'storybook', expected: undefined },
+        { name: 'rspec', expected: undefined },
       ]
 
       it.each(reporters)(
@@ -469,6 +495,7 @@ describe('Reporters', () => {
         { name: 'go', expected: undefined },
         { name: 'rust', expected: '5' }, // Successfully extracts actual value
         { name: 'storybook', expected: undefined },
+        { name: 'rspec', expected: undefined },
       ]
 
       it.each(reporters)(
@@ -522,6 +549,10 @@ describe('Reporters', () => {
             'single-import-error.stories.js',
           ],
         },
+        {
+          name: 'rspec',
+          expected: ['LoadError', 'non_existent_module'],
+        },
       ]
 
       it.each(reporters)(
@@ -551,6 +582,7 @@ describe('Reporters', () => {
         { name: 'go', expected: 'passed' },
         { name: 'rust', expected: 'passed' },
         { name: 'storybook', expected: 'passed' },
+        { name: 'rspec', expected: 'passed' },
       ]
 
       it.each(reporters)(
@@ -574,6 +606,7 @@ describe('Reporters', () => {
         { name: 'go', expected: 'failed' },
         { name: 'rust', expected: 'failed' },
         { name: 'storybook', expected: 'failed' },
+        { name: 'rspec', expected: 'failed' },
       ]
 
       it.each(reporters)(
@@ -597,6 +630,7 @@ describe('Reporters', () => {
         { name: 'go', expected: 'failed' },
         { name: 'rust', expected: 'failed' },
         { name: 'storybook', expected: 'failed' },
+        { name: 'rspec', expected: 'failed' },
       ]
 
       it.each(reporters)(
@@ -648,6 +682,7 @@ describe('Reporters', () => {
     const go = reporterData.find((r) => r.name === 'GoReporter')
     const rust = reporterData.find((r) => r.name === 'RustReporter')
     const storybook = reporterData.find((r) => r.name === 'StorybookReporter')
+    const rspec = reporterData.find((r) => r.name === 'RspecReporter')
 
     return {
       jest: safeExtract(jest?.[scenario], extractor),
@@ -657,6 +692,7 @@ describe('Reporters', () => {
       go: safeExtract(go?.[scenario], extractor),
       rust: safeExtract(rust?.[scenario], extractor),
       storybook: safeExtract(storybook?.[scenario], extractor),
+      rspec: safeExtract(rspec?.[scenario], extractor),
     }
   }
 
