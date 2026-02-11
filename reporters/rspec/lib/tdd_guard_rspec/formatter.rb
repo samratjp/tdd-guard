@@ -142,12 +142,24 @@ module TddGuardRspec
 
     def project_root
       config_root = RSpec.configuration.tdd_guard_project_root
-      return config_root if config_root.is_a?(String) && !config_root.empty?
+      return config_root if valid_project_root?(config_root)
 
       env_root = ENV["TDD_GUARD_PROJECT_ROOT"]
-      return env_root if env_root.is_a?(String) && !env_root.empty?
+      return env_root if valid_project_root?(env_root)
 
       Dir.pwd
+    end
+
+    def valid_project_root?(path)
+      return false unless path.is_a?(String) && !path.empty?
+      return false unless File.absolute_path?(path)
+
+      normalized_root = File.realpath(path)
+      normalized_cwd = File.realpath(Dir.pwd)
+
+      normalized_cwd == normalized_root || normalized_cwd.start_with?("#{normalized_root}/")
+    rescue Errno::ENOENT
+      false
     end
 
     def write_results(output_data)
