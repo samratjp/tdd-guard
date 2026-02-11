@@ -66,6 +66,27 @@ export TDD_GUARD_PROJECT_ROOT=/absolute/path/to/project/root
 
 RSpec configuration takes precedence over the environment variable.
 
+The project root must be an absolute path and the current working directory must be within it. Invalid paths are silently ignored with a fallback to the current working directory.
+
+### Rails Projects
+
+The formatter works with Rails projects using `rspec-rails` without any additional setup. In a Rails project, configure the formatter in `rails_helper.rb` or a support file:
+
+```ruby
+# spec/support/tdd_guard.rb
+require "tdd_guard_rspec"
+
+RSpec.configure do |config|
+  config.formatter = TddGuardRspec::Formatter
+end
+```
+
+Make sure the support file is loaded by adding to `rails_helper.rb`:
+
+```ruby
+Rails.root.glob("spec/support/**/*.rb").sort.each { |f| require f }
+```
+
 ## More Information
 
 - Test results are saved to `.claude/tdd-guard/data/test.json`
