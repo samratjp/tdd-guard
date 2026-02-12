@@ -65,6 +65,7 @@ downloads/
 eggs/
 .eggs/
 lib/
+!reporters/rspec/lib/
 lib64/
 parts/
 sdist/
@@ -91,3 +92,6 @@ docs/internal/
 target/
 **/*.rs.bk
 *.pdb
+
+# Ruby gem build artifacts
+*.gem
