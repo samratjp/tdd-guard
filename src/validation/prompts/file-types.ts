@@ -1,8 +1,17 @@
 export const FILE_TYPES = `## File Type Specific Rules
 
 ### Identifying File Types
-- **Test files**: Contain \`.test.\`, \`.spec.\`, or \`test/\` in the path
-- **Implementation files**: All other source files
+- **Test files**: Contain \`.test.\`, \`.spec.\`, \`_test.\`, or \`test/\` in the path. For Elixir: files ending in \`_test.exs\` in a \`test/\` directory.
+- **Implementation files**: All other source files. For Elixir: \`.ex\` files in \`lib/\`.
+
+### Elixir/Phoenix Projects
+- Test framework: ExUnit (outputs plain text, not JSON)
+- Test command: \`mix test\` — output appears as raw text in test output section
+- Test files: \`test/**/*_test.exs\`
+- Implementation files: \`lib/**/*.ex\`
+- ExUnit failure patterns: \`** (SomeError)\`, \`Assertion with == failed\`, \`N tests, M failures\`
+- ExUnit pass pattern: \`N tests, 0 failures\`
+- When test output contains ExUnit-style text (e.g. \`Finished in\`, \`tests,\`, \`failures\`), treat it as valid test evidence just like structured JSON results.
 
 ### Test File Rules
 

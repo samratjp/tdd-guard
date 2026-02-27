@@ -111,9 +111,35 @@ function formatEdit(
 function formatTestSection(testOutput?: string): string {
   if (!testOutput) return ''
 
-  const output = testOutput.trim()
-    ? new TestResultsProcessor().process(testOutput)
-    : 'No test output available. Tests must be run before implementing.'
+  if (!testOutput.trim()) {
+    return (
+      TEST_OUTPUT +
+      codeBlock(
+        'No test output available. Tests must be run before implementing.'
+      )
+    )
+  }
+
+  // Try structured JSON parsing first (Vitest/pytest reporters)
+  let output: string
+  try {
+    output = new TestResultsProcessor().process(testOutput)
+  } catch {
+    // For non-JSON test output (e.g. ExUnit, RSpec, Go test),
+    // pass the raw text so the AI model can evaluate it directly
+    output = testOutput.trim()
+  }
+
+  // If processor returned generic failure messages, fall back to raw output
+  // so the AI model can interpret the actual test runner text
+  const uninformativeResults = [
+    'Invalid JSON format.',
+    'No test results found.',
+    'Invalid test result format.',
+  ]
+  if (uninformativeResults.includes(output)) {
+    output = testOutput.trim()
+  }
 
   return TEST_OUTPUT + codeBlock(output)
 }
