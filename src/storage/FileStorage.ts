@@ -15,6 +15,7 @@ export class FileStorage implements Storage {
       lint: this.config.lintFilePath,
       config: this.config.configFilePath,
       instructions: this.config.instructionsFilePath,
+      role: this.config.roleFilePath,
     }
   }
 
@@ -59,6 +60,10 @@ export class FileStorage implements Storage {
     await this.save('instructions', content)
   }
 
+  async saveRole(content: string): Promise<void> {
+    await this.save('role', content)
+  }
+
   async getTest(): Promise<string | null> {
     return this.get('test')
   }
@@ -81,6 +86,10 @@ export class FileStorage implements Storage {
 
   async getInstructions(): Promise<string | null> {
     return this.get('instructions')
+  }
+
+  async getRole(): Promise<string | null> {
+    return this.get('role')
   }
 
   async clearTransientData(): Promise<void> {

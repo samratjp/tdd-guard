@@ -18,6 +18,7 @@ import { SYSTEM_PROMPT } from '../prompts/system-prompt'
 import { RULES } from '../prompts/rules'
 import { FILE_TYPES } from '../prompts/file-types'
 import { RESPONSE } from '../prompts/response'
+import { getRoleRules } from '../prompts/roles'
 
 // Import operation-specific context
 import { EDIT } from '../prompts/operations/edit'
@@ -40,15 +41,18 @@ export function generateDynamicContext(
     context.instructions ?? RULES,
     FILE_TYPES,
 
-    // 2. Operation-specific context and changes
+    // 2. Role-specific rules (when agent team is active)
+    context.role ? getRoleRules(context.role) : '',
+
+    // 3. Operation-specific context and changes
     formatOperation(operation),
 
-    // 3. Additional context
+    // 4. Additional context
     formatTestSection(context.test),
     formatTodoSection(context.todo),
     formatLintSection(context.lint),
 
-    // 4. Response format
+    // 5. Response format
     RESPONSE,
   ]
 

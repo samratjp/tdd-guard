@@ -8,6 +8,7 @@ const MODIFICATIONS_FILENAME = 'modifications.json'
 const LINT_FILENAME = 'lint.json'
 const CONFIG_FILENAME = 'config.json'
 const INSTRUCTIONS_FILENAME = 'instructions.md'
+const ROLE_FILENAME = 'role.json'
 
 export const DEFAULT_MODEL_VERSION = 'claude-sonnet-4-0'
 export const DEFAULT_CLIENT: ClientType = 'sdk'
@@ -99,6 +100,10 @@ export class Config {
 
   get instructionsFilePath(): string {
     return path.join(this.dataDir, INSTRUCTIONS_FILENAME)
+  }
+
+  get roleFilePath(): string {
+    return path.join(this.dataDir, ROLE_FILENAME)
   }
 
   private getLinterType(options?: ConfigOptions): string | undefined {

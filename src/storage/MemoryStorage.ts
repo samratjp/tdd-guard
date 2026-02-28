@@ -27,6 +27,10 @@ export class MemoryStorage implements Storage {
     this.store.set('instructions', content)
   }
 
+  async saveRole(content: string): Promise<void> {
+    this.store.set('role', content)
+  }
+
   async getTest(): Promise<string | null> {
     return this.store.get('test') ?? null
   }
@@ -49,6 +53,10 @@ export class MemoryStorage implements Storage {
 
   async getInstructions(): Promise<string | null> {
     return this.store.get('instructions') ?? null
+  }
+
+  async getRole(): Promise<string | null> {
+    return this.store.get('role') ?? null
   }
 
   async clearTransientData(): Promise<void> {
