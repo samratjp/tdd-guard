@@ -25,6 +25,7 @@ describe('buildContext', () => {
         warningCount: 0,
       },
       instructions: undefined,
+      role: undefined,
     })
   })
 
@@ -196,5 +197,48 @@ describe('buildContext', () => {
     const context = await buildContext(storage)
 
     expect(context.instructions).toBe(customInstructions)
+  })
+
+  describe('role', () => {
+    it('should include role when present in storage', async () => {
+      await storage.saveRole(JSON.stringify({ role: 'red' }))
+
+      const context = await buildContext(storage)
+
+      expect(context.role).toBe('red')
+    })
+
+    it('should be undefined when no role data exists', async () => {
+      const context = await buildContext(storage)
+
+      expect(context.role).toBeUndefined()
+    })
+
+    it('should handle malformed JSON gracefully', async () => {
+      await storage.saveRole('not json')
+
+      const context = await buildContext(storage)
+
+      expect(context.role).toBeUndefined()
+    })
+
+    it('should reject invalid role values', async () => {
+      await storage.saveRole(JSON.stringify({ role: 'invalid' }))
+
+      const context = await buildContext(storage)
+
+      expect(context.role).toBeUndefined()
+    })
+
+    it.each(['red', 'green', 'refactor'] as const)(
+      'should accept valid role: %s',
+      async (role) => {
+        await storage.saveRole(JSON.stringify({ role }))
+
+        const context = await buildContext(storage)
+
+        expect(context.role).toBe(role)
+      }
+    )
   })
 })

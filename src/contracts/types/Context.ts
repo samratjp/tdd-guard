@@ -1,3 +1,5 @@
+import { Role } from './Role'
+
 export interface ProcessedLintData {
   hasIssues: boolean
   summary: string
@@ -13,4 +15,5 @@ export type Context = {
   test?: string
   lint?: ProcessedLintData
   instructions?: string
+  role?: Role
 }

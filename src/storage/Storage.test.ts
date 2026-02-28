@@ -81,6 +81,15 @@ describe.each(getStorageImplementations())('%s', (_name, setupStorage) => {
     })
   })
 
+  describe('saveRole and getRole', () => {
+    it('should store content that can be retrieved', async () => {
+      const content = '{"role":"red"}'
+
+      await storage.saveRole(content)
+      expect(await storage.getRole()).toBe(content)
+    })
+  })
+
   describe('get methods when no data exists', () => {
     it('should return null when no test data exists', async () => {
       expect(await storage.getTest()).toBeNull()
@@ -105,6 +114,10 @@ describe.each(getStorageImplementations())('%s', (_name, setupStorage) => {
     it('should return null when no instructions exist', async () => {
       expect(await storage.getInstructions()).toBeNull()
     })
+
+    it('should return null when no role data exists', async () => {
+      expect(await storage.getRole()).toBeNull()
+    })
   })
 
   describe('save methods overwrite existing content', () => {
@@ -115,12 +128,14 @@ describe.each(getStorageImplementations())('%s', (_name, setupStorage) => {
       await storage.saveLint(FIRST_CONTENT)
       await storage.saveConfig(FIRST_CONTENT)
       await storage.saveInstructions(FIRST_CONTENT)
+      await storage.saveRole(FIRST_CONTENT)
       await storage.saveTest(SECOND_CONTENT)
       await storage.saveTodo(SECOND_CONTENT)
       await storage.saveModifications(SECOND_CONTENT)
       await storage.saveLint(SECOND_CONTENT)
       await storage.saveConfig(SECOND_CONTENT)
       await storage.saveInstructions(SECOND_CONTENT)
+      await storage.saveRole(SECOND_CONTENT)
     })
 
     it('should overwrite existing test content', async () => {
@@ -145,6 +160,10 @@ describe.each(getStorageImplementations())('%s', (_name, setupStorage) => {
 
     it('should overwrite existing instructions content', async () => {
       expect(await storage.getInstructions()).toBe(SECOND_CONTENT)
+    })
+
+    it('should overwrite existing role content', async () => {
+      expect(await storage.getRole()).toBe(SECOND_CONTENT)
     })
   })
 
@@ -175,6 +194,13 @@ describe.each(getStorageImplementations())('%s', (_name, setupStorage) => {
       await storage.clearTransientData()
 
       expect(await storage.getLint()).toBeNull()
+    })
+
+    it('should clear role data', async () => {
+      await storage.saveRole('{"role":"red"}')
+      await storage.clearTransientData()
+
+      expect(await storage.getRole()).toBeNull()
     })
 
     it('should NOT clear config data', async () => {

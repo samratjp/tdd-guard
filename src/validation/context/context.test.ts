@@ -12,6 +12,9 @@ import { WRITE } from '../prompts/operations/write'
 import { TODOS } from '../prompts/tools/todos'
 import { TEST_OUTPUT } from '../prompts/tools/test-output'
 import { Config } from '../../config/Config'
+import { RED_RULES } from '../prompts/roles/red-rules'
+import { GREEN_RULES } from '../prompts/roles/green-rules'
+import { REFACTOR_RULES } from '../prompts/roles/refactor-rules'
 
 describe('generateDynamicContext', () => {
   test('uses default Config when config parameter is omitted', () => {
@@ -279,6 +282,51 @@ describe('generateDynamicContext', () => {
     })
   })
 
+  describe('role-specific rules', () => {
+    test('should include red rules when role is red', () => {
+      const result = generateContextResult(testData.editOperation(), {
+        role: 'red',
+      })
+
+      expect(result).toContain(RED_RULES)
+    })
+
+    test('should include green rules when role is green', () => {
+      const result = generateContextResult(testData.editOperation(), {
+        role: 'green',
+      })
+
+      expect(result).toContain(GREEN_RULES)
+    })
+
+    test('should include refactor rules when role is refactor', () => {
+      const result = generateContextResult(testData.editOperation(), {
+        role: 'refactor',
+      })
+
+      expect(result).toContain(REFACTOR_RULES)
+    })
+
+    test('should not include role rules when no role is set', () => {
+      const result = generateContextResult(testData.editOperation())
+
+      expect(result).not.toContain('Active Role:')
+    })
+
+    test('should place role rules after FILE_TYPES and before operation', () => {
+      const result = generateContextResult(testData.editOperation(), {
+        role: 'red',
+      })
+
+      const fileTypesIndex = result.indexOf('## File Type Specific Rules')
+      const roleIndex = result.indexOf('## Active Role: RED Phase')
+      const operationIndex = result.indexOf('## Analyzing Edit Operations')
+
+      expect(fileTypesIndex).toBeLessThan(roleIndex)
+      expect(roleIndex).toBeLessThan(operationIndex)
+    })
+  })
+
   describe('operation-specific context inclusion', () => {
     describe('for Edit operations', () => {
       let result: string
@@ -348,7 +396,12 @@ describe('generateDynamicContext', () => {
 // Test helpers
 function generateContextResult(
   operation: ToolOperation,
-  additionalContext?: { test?: string; todo?: string; instructions?: string }
+  additionalContext?: {
+    test?: string
+    todo?: string
+    instructions?: string
+    role?: 'red' | 'green' | 'refactor'
+  }
 ) {
   const context = {
     modifications: JSON.stringify(operation),

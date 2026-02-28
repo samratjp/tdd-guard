@@ -1,4 +1,6 @@
-export function detectFileType(hookData: unknown): 'python' | 'javascript' | 'php' {
+export type FileType = 'python' | 'javascript' | 'php' | 'elixir'
+
+export function detectFileType(hookData: unknown): FileType {
   // Handle different tool operation types
   const toolInput = (hookData as { tool_input?: Record<string, unknown> }).tool_input
   if (toolInput && typeof toolInput === 'object' && 'file_path' in toolInput) {
@@ -9,6 +11,9 @@ export function detectFileType(hookData: unknown): 'python' | 'javascript' | 'ph
       }
       if (filePath.endsWith('.php')) {
         return 'php'
+      }
+      if (filePath.endsWith('.ex') || filePath.endsWith('.exs')) {
+        return 'elixir'
       }
     }
   }
